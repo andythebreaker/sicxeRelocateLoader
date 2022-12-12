@@ -23,12 +23,15 @@ void mems::sethd(hexdm *hd,int i) {
 }
 void mems::print() {
 	cout << endl;
+	aisatsu_printMEM
 	int ix = 0;
 		for (map<int, cell>::iterator it = m.begin(); it != m.end(); it++) { 
 			cout << (*it).second.t.s ;
 			ix++;
 			if (ix % 64 == 0)cout << endl;
 		}
+		cout << endl;
+		aisatsu_printEMPTY
 }
 
 

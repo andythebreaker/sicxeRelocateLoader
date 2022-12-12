@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="afterBackward.h" />
     <ClInclude Include="Aisatsu.h" />
     <ClInclude Include="FILEI.h" />
     <ClInclude Include="mems.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="SekaiTekiNi.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="afterBackward.cpp" />
     <ClCompile Include="Aisatsu.cpp" />
     <ClCompile Include="FILEI.cpp" />
     <ClCompile Include="mems.cpp" />

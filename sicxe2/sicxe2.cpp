@@ -68,7 +68,6 @@ int main()
 	for (auto &v_re : vre) // access by reference to avoid copying
 	{
 		v_re.printnew();
-		cout << "_-_" << endl;
 	}
 
 	exit(0);

@@ -1,4 +1,5 @@
 #pragma once
+#include "Aisatsu.h"
 #include <random>
 #include <iostream>
 #include <map>
@@ -7,6 +8,8 @@
 #include <fstream>
 #include <list>
 #include <sstream>
+#define aisatsu_printMEM Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting("print MEM");
+#define aisatsu_printEMPTY Aisatsu* Aisatsu1 = new Aisatsu(); Aisatsu1->greeting("");
 #define pgsize 4000//4k
 using namespace std; 
 struct hexd_

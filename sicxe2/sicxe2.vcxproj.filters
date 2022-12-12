@@ -39,6 +39,9 @@
     <ClInclude Include="rowelement.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+    <ClInclude Include="afterBackward.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -66,6 +69,9 @@
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="rowelement.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="afterBackward.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
