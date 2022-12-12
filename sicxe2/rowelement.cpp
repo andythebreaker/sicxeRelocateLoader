@@ -47,6 +47,7 @@ rowelement::rowelement(string i)
 		debbug cout << "p4 len" << p4.length() << endl;
 		hexdr tmp_;
 		set(&tmp_, p2, na, -1);
+		set(&startpt, p2, na, -1);
 		(*row_loc_start).push_back(tmp_);
 		if (plen.d * 2 != p4.length()) {
 			cout << "[error] record len NEQ!" << endl;

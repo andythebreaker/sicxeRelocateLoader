@@ -51,9 +51,9 @@ public:
 	vector<hexdr> new_;
 	void printnew();
 	int start_index; int end_index;
+	static int rowcount_main_t; static int rowcount_main_m;
 private:
 	void set(hexdr *z, string i,rt r_t,int rownum_);
-	static int rowcount_main_t; static int rowcount_main_m;
 	static vector<hexdr>* row_loc_start;
 };
 

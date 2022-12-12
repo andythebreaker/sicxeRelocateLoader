@@ -15,6 +15,7 @@
 #include <list>
 #include <sstream>
 
+#define VER2
 #define aisatsu Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting();
 void aisatsu_(std::string aisatsu_word) { Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting(aisatsu_word); }
 #define set_check_income false
@@ -41,18 +42,7 @@ int main()
 	vector<string> ar_(ar.size());
 	copy(ar.begin(), ar.end(), ar_.begin());
 	regexh* check_hrecord = new regexh(ar_[0]);
-	SekaiTekiNi* SekaiTekiNi0 = new SekaiTekiNi();
-	SekaiTekiNi0->set(&(SekaiTekiNi0->name), check_hrecord->h2);
-	randoms* randoms0 = new randoms(stoul("0x" + check_hrecord->h4, nullptr, 16));
-	ostringstream ss;
-	ss << hex << randoms0->load_addr;
-	SekaiTekiNi0->set(&(SekaiTekiNi0->porgstart), stoul("0x" + check_hrecord->h3, nullptr, 16) == 0 ? ss.str() : check_hrecord->h3);
-	SekaiTekiNi0->set(&(SekaiTekiNi0->porglength), check_hrecord->h4);
-	SekaiTekiNi0->print();
-
-	mems *mems0 = new mems();
-	mems0->print();
-
+	
 	vector<rowelement> vre;
 	int rowcount = 0;
 	for (list<string>::iterator it = ar.begin(); it != ar.end(); it++) {
@@ -62,13 +52,52 @@ int main()
 		}
 		rowcount++;
 	}
-
 	rowelement::showt(); rowelement::showm();
+
+	SekaiTekiNi* SekaiTekiNi0 = new SekaiTekiNi();
+	SekaiTekiNi0->set(&(SekaiTekiNi0->name), check_hrecord->h2);
+#ifdef VER2
+	randoms* randoms0 = new randoms(vre[rowelement::rowcount_main_t - 1].startpt.d+vre[rowelement::rowcount_main_t-1].mt.size()- vre[0].startpt.d);
+#else // VER1
+	randoms* randoms0 = new randoms(stoul("0x" + check_hrecord->h4, nullptr, 16));
+#endif // VER
+	ostringstream ss;
+	ss << hex << randoms0->load_addr;
+	SekaiTekiNi0->set(&(SekaiTekiNi0->porgstart), stoul("0x" + check_hrecord->h3, nullptr, 16) == 0 ? ss.str() : check_hrecord->h3);
+	SekaiTekiNi0->set(&(SekaiTekiNi0->porglength), check_hrecord->h4);
+	SekaiTekiNi0->print();
+
 	rowelement::backward(&vre);
+	vector<int> fmax;
+	for (auto &v_re : vre)
+	{
+		int margen = 0;
+		for (auto &v_r_e_ : v_re.new_)
+		{
+			fmax.push_back(v_re.startpt.d + margen);
+			margen++;
+		}
+	}
+
+	mems *mems0 = new mems(SekaiTekiNi0->porgstart.d,
+		vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d);
+	mems0->print();
+	cout<<":::::::::::::::"<<mems0->m.size()<<endl;
+	//cout <<"max"<< *max_element(fmax.begin(), fmax.end()) << endl;//https://stackoverflow.com/questions/34315002/max-in-a-c-array
+
 	for (auto &v_re : vre) // access by reference to avoid copying
 	{
-		v_re.printnew();
-	}
+		//v_re.printnew();
+		//cout << v_re.startpt.d << endl;
+		int margen = 0;
+		for (auto &v_r_e_ : v_re.new_) // access by reference to avoid copying
+		{
+			cout << "["<<(mems0->m).find(v_re.startpt.d + margen)->first <<"]"<< endl;
+			mems0->sethd(&((mems0->m).find(v_re.startpt.d + margen)->second.t), v_r_e_.d);
+			cout << (v_re.startpt.d + margen) << "<" << v_r_e_.s << "> ";
+			margen++;
+		}
+	}mems0->print();
 
 	exit(0);
 }

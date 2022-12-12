@@ -29,8 +29,10 @@ class mems
 {
 	
 public:
-	mems();
-	~mems();
+	mems(); 
+	mems(int main_start);
+	mems(int main_start, int reqmem);
+	~mems(); 
 	map<int, cell> m;
 	void print();
 	void sethd(hexdm *hd,int i);
