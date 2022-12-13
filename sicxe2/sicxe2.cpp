@@ -9,6 +9,7 @@
 #include "SekaiTekiNi.h"
 #include "rowelement.h"
 #include "mems.h"
+#include "tranfaddr.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -41,7 +42,9 @@ int main()
 	set_check_ check_income(ar);
 	vector<string> ar_(ar.size());
 	copy(ar.begin(), ar.end(), ar_.begin());
+	//cout << ar_.back();
 	regexh* check_hrecord = new regexh(ar_[0]);
+	tranfaddr* tranfaddr0 = new tranfaddr(ar_.back());
 	
 	vector<rowelement> vre;
 	int rowcount = 0;
@@ -67,6 +70,15 @@ int main()
 	SekaiTekiNi0->set(&(SekaiTekiNi0->porglength), check_hrecord->h4);
 	SekaiTekiNi0->print();
 
+	/*對VRE做起始元加加
+	*/
+	for (auto &v_re : vre)
+	{
+		ostringstream ss_;
+		ss_ << hex << (SekaiTekiNi0->porgstart.d + v_re.startpt.d);
+		v_re.set(&(v_re.startpt), ss_.str(),na,-1);
+	}
+
 	rowelement::backward(&vre);
 	vector<int> fmax;
 	for (auto &v_re : vre)
@@ -83,12 +95,14 @@ int main()
 		vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d);
 	mems0->print();
 	cout<<":::::::::::::::"<<mems0->m.size()<<endl;
-	//cout <<"max"<< *max_element(fmax.begin(), fmax.end()) << endl;//https://stackoverflow.com/questions/34315002/max-in-a-c-array
+	cout <<"max"<< *max_element(fmax.begin(), fmax.end()) << endl;//https://stackoverflow.com/questions/34315002/max-in-a-c-array
 
 	for (auto &v_re : vre) // access by reference to avoid copying
 	{
-		//v_re.printnew();
-		//cout << v_re.startpt.d << endl;
+		if (v_re.r==t)
+		{
+		v_re.printnew();
+		cout << v_re.startpt.d << endl;
 		int margen = 0;
 		for (auto &v_r_e_ : v_re.new_) // access by reference to avoid copying
 		{
@@ -97,7 +111,12 @@ int main()
 			cout << (v_re.startpt.d + margen) << "<" << v_r_e_.s << "> ";
 			margen++;
 		}
-	}mems0->print();
+		}
+	}
+	mems0->print();
+	mems0->print2file(SekaiTekiNi0->name.s, SekaiTekiNi0->porgstart.s,
+		(vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d)
+		,tranfaddr0->e2=="000000"?SekaiTekiNi0->porgstart.s:tranfaddr0->e2);
 
 	exit(0);
 }

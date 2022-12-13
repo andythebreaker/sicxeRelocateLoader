@@ -18,7 +18,7 @@ list<string> FILEI::autoread() {
 	string myText;
 	list<string> myList = {};
 	// Read from the text file
-	ifstream MyReadFile(INA);
+	ifstream MyReadFile(INB);
 
 	// Use a while loop together with the getline() function to read the file line by line
 	while (getline(MyReadFile, myText)) {

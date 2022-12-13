@@ -8,6 +8,7 @@
 #include <fstream>
 #include <list>
 #include <sstream>
+#include <fstream>
 #define aisatsu_printMEM Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting("print MEM");
 #define aisatsu_printEMPTY Aisatsu* Aisatsu1 = new Aisatsu(); Aisatsu1->greeting("");
 #define pgsize 4000//4k
@@ -35,6 +36,7 @@ public:
 	~mems(); 
 	map<int, cell> m;
 	void print();
+	void print2file(string nameo, string sad, int slen, string ta);
 	void sethd(hexdm *hd,int i);
 };
 

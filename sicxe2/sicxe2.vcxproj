@@ -160,6 +160,7 @@
     <ClInclude Include="regexh.h" />
     <ClInclude Include="rowelement.h" />
     <ClInclude Include="SekaiTekiNi.h" />
+    <ClInclude Include="tranfaddr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="afterBackward.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="rowelement.cpp" />
     <ClCompile Include="SekaiTekiNi.cpp" />
     <ClCompile Include="sicxe2.cpp" />
+    <ClCompile Include="tranfaddr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ina.txt" />

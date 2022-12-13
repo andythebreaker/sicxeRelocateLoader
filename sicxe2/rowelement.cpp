@@ -27,7 +27,7 @@ rowelement::rowelement(string i)
 {
 	debbug cout << "xrecord: " << quoted(i) << '\n';
 
-	const regex re("([TM])([A-Za-z0-9]{6})([A-Za-z0-9]{2})(.+)");
+	const regex re("([TM])([A-Za-z0-9]{6})([A-Za-z0-9]{2})(.*)");
 
 	smatch match;
 	if (regex_match(i, match, re))
@@ -49,7 +49,7 @@ rowelement::rowelement(string i)
 		set(&tmp_, p2, na, -1);
 		set(&startpt, p2, na, -1);
 		(*row_loc_start).push_back(tmp_);
-		if (plen.d * 2 != p4.length()) {
+		if (r == t&&plen.d * 2 != p4.length()) {
 			cout << "[error] record len NEQ!" << endl;
 			exit(1);
 		}
@@ -67,7 +67,6 @@ rowelement::rowelement(string i)
 		}
 		if (r == t)end_index = t_->size();
 	}
-
 	else {
 		cout << "ERROR invalid xrecord\n";
 		exit(1);
