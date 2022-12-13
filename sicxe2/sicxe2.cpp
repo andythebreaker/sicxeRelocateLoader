@@ -45,7 +45,7 @@ int main()
 	//cout << ar_.back();
 	regexh* check_hrecord = new regexh(ar_[0]);
 	tranfaddr* tranfaddr0 = new tranfaddr(ar_.back());
-	
+
 	vector<rowelement> vre;
 	int rowcount = 0;
 	for (list<string>::iterator it = ar.begin(); it != ar.end(); it++) {
@@ -60,7 +60,7 @@ int main()
 	SekaiTekiNi* SekaiTekiNi0 = new SekaiTekiNi();
 	SekaiTekiNi0->set(&(SekaiTekiNi0->name), check_hrecord->h2);
 #ifdef VER2
-	randoms* randoms0 = new randoms(vre[rowelement::rowcount_main_t - 1].startpt.d+vre[rowelement::rowcount_main_t-1].mt.size()- vre[0].startpt.d);
+	randoms* randoms0 = new randoms(vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d);
 #else // VER1
 	randoms* randoms0 = new randoms(stoul("0x" + check_hrecord->h4, nullptr, 16));
 #endif // VER
@@ -74,9 +74,77 @@ int main()
 	*/
 	for (auto &v_re : vre)
 	{
-		ostringstream ss_;
-		ss_ << hex << (SekaiTekiNi0->porgstart.d + v_re.startpt.d);
-		v_re.set(&(v_re.startpt), ss_.str(),na,-1);
+		if (v_re.r == t) {
+			ostringstream ss_;
+			ss_ << hex << (SekaiTekiNi0->porgstart.d + v_re.startpt.d);
+			v_re.set(&(v_re.startpt), ss_.str(), na, -1);
+		}
+		else if (v_re.r == m) {
+			vector<hexdr> newVec(rowelement::t_->begin() + v_re.startpt.d,
+				(
+					rowelement::t_->begin() + v_re.startpt.d +
+					(
+					/*(v_re.plen.d % 2 == 0) ? (v_re.plen.d / 2) :*/ ((v_re.plen.d + 1) / 2)
+						)
+					)
+			);
+
+			ostringstream new_Vec;
+			bool isfirst = true;
+			for (auto &newVec_ : newVec)
+			{
+				if ((!isfirst)
+					||
+					(isfirst&& (v_re.plen.d % 2 == 0))
+					) {
+			
+					cout << "#" << newVec_.s << "$";
+					reverse(newVec_.s.begin(), newVec_.s.end());
+					newVec_.s.resize(2, '0');
+					reverse(newVec_.s.begin(), newVec_.s.end());
+					new_Vec << newVec_.s;
+				}
+				else if (isfirst && (v_re.plen.d % 2 != 0)){
+					cout << "#" << newVec_.s << "$";
+					reverse(newVec_.s.begin(), newVec_.s.end());
+					newVec_.s.resize(2, '0');
+					reverse(newVec_.s.begin(), newVec_.s.end());
+					new_Vec << newVec_.s[1];
+				}
+				else {
+					cout << "[upper] error!@sicxe2.cpp::<<before>>rowelement::backward(&vre);" << endl;
+					exit(1);
+				}
+				isfirst = false;
+			}
+			cout << new_Vec.str();
+			cout << "%" << endl;
+			int thing2add = stoul("0x" + new_Vec.str(), nullptr, 16);
+			thing2add += SekaiTekiNi0->porgstart.d;
+
+			ostringstream wb;
+			wb << hex << thing2add;
+			string wb_ = wb.str();;
+			reverse(wb_.begin(), wb_.end());
+			wb_.resize(v_re.plen.d, '0');
+			reverse(wb_.begin(), wb_.end());
+			isfirst = true;
+			for (int writeback = 0; writeback < ((v_re.plen.d + 1) / 2); writeback++)
+			{
+				string tmp_ap = "";
+				tmp_ap+=((isfirst && (v_re.plen.d % 2 != 0))? (*(rowelement::t_))[v_re.startpt.d + writeback].s[0]: wb_[writeback * 2]);
+				tmp_ap+=(wb_[writeback * 2 + 1]);
+				/*void set(hexdr *z, string i,rt r_t,int rownum_);*/
+				cout <<"////"<< tmp_ap << "////" << endl;
+				v_re.set(&((*(rowelement::t_))[v_re.startpt.d + writeback]), tmp_ap
+					, (*(rowelement::t_))[v_re.startpt.d + writeback].r_t_, (*(rowelement::t_))[v_re.startpt.d + writeback].rownum);
+				isfirst = false;
+			}
+		}
+		else {
+			cout << "error!@sicxe2.cpp::<<before>>rowelement::backward(&vre);" << endl;
+			exit(1);
+		}
 	}
 
 	rowelement::backward(&vre);
@@ -94,29 +162,29 @@ int main()
 	mems *mems0 = new mems(SekaiTekiNi0->porgstart.d,
 		vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d);
 	mems0->print();
-	cout<<":::::::::::::::"<<mems0->m.size()<<endl;
-	cout <<"max"<< *max_element(fmax.begin(), fmax.end()) << endl;//https://stackoverflow.com/questions/34315002/max-in-a-c-array
+	cout << ":::::::::::::::" << mems0->m.size() << endl;
+	cout << "max" << *max_element(fmax.begin(), fmax.end()) << endl;//https://stackoverflow.com/questions/34315002/max-in-a-c-array
 
 	for (auto &v_re : vre) // access by reference to avoid copying
 	{
-		if (v_re.r==t)
+		if (v_re.r == t)
 		{
-		v_re.printnew();
-		cout << v_re.startpt.d << endl;
-		int margen = 0;
-		for (auto &v_r_e_ : v_re.new_) // access by reference to avoid copying
-		{
-			cout << "["<<(mems0->m).find(v_re.startpt.d + margen)->first <<"]"<< endl;
-			mems0->sethd(&((mems0->m).find(v_re.startpt.d + margen)->second.t), v_r_e_.d);
-			cout << (v_re.startpt.d + margen) << "<" << v_r_e_.s << "> ";
-			margen++;
-		}
+			v_re.printnew();
+			cout << v_re.startpt.d << endl;
+			int margen = 0;
+			for (auto &v_r_e_ : v_re.new_) // access by reference to avoid copying
+			{
+				cout << "[" << (mems0->m).find(v_re.startpt.d + margen)->first << "]" << endl;
+				mems0->sethd(&((mems0->m).find(v_re.startpt.d + margen)->second.t), v_r_e_.d);
+				cout << (v_re.startpt.d + margen) << "<" << v_r_e_.s << "> ";
+				margen++;
+			}
 		}
 	}
 	mems0->print();
 	mems0->print2file(SekaiTekiNi0->name.s, SekaiTekiNi0->porgstart.s,
 		(vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d)
-		,tranfaddr0->e2=="000000"?SekaiTekiNi0->porgstart.s:tranfaddr0->e2);
+		, tranfaddr0->e2 == "000000" ? SekaiTekiNi0->porgstart.s : tranfaddr0->e2);
 
 	exit(0);
 }
