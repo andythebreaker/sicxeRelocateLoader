@@ -2,9 +2,10 @@
 #include "rowelement.h"
 
 vector<hexdr>* rowelement::m_ = new vector<hexdr>(); vector<hexdr>* rowelement::t_ = new vector<hexdr>();
-int rowelement::rowcount_main_t = -1; int rowelement::rowcount_main_m = -1;
+int rowelement::rowcount_main_t = -1;
+int rowelement::rowcount_main_m = -1;
 vector<hexdr>* rowelement::row_loc_start = new vector<hexdr>();
-bool rowelement::rowelementswitch = false;
+//bool rowelement::rowelementswitch = false;
 rowelement::rowelement()
 {
 }
@@ -143,7 +144,7 @@ rowelement::rowelement(string i, bool skipp)
 }
 
 void rowelement::set(hexdr *z, string i, rt r_t, int rownum_) {
-	if (i[0] == '+'|| rowelement::rowelementswitch == true) {
+	if (i[0] == '+'|| i[0] == '-' || rowelement::rowelementswitch == true) {
 		rowelement::rowelementswitch = true; cout << "<SKIP~~>" << i << endl;
 	i = "0";
 	(*z).s = i;
@@ -202,6 +203,14 @@ void rowelement::printnew() {
 			cout << h_exdr.s << " ";
 		}
 	cout << endl;
+}
+
+void  rowelement::cleanup() {
+	rowelement::m_->clear();
+	rowelement::t_->clear();
+	rowelement::row_loc_start->clear();
+	rowelement::rowcount_main_t = -1;
+	rowelement::rowcount_main_m = -1;
 }
 
 rowelement::~rowelement()

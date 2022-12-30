@@ -70,13 +70,14 @@ int main()
 		usrinput_locs.push_back("hw3inputmain.txt");
 		usrinput_locs.push_back("hw3inputsub1.txt");
 		usrinput_locs.push_back("hw3inputsub2.txt");
+		usrinput_locs.push_back("EOF");
 	}
 	aisatsu92
 		PRINTSTRINGVECTOR(usrinput_locs)
 		cout << endl;
 	aisatsu93
 		int adder_read_all_prog_size = 0;
-	for (size_t read_all_prog_size = 1; read_all_prog_size < usrinput_locs.size()-1; read_all_prog_size++)
+	/*for (size_t read_all_prog_size = 1; read_all_prog_size < usrinput_locs.size() - 1; read_all_prog_size++)
 	{
 		cout << usrinput_locs[read_all_prog_size] << endl;
 
@@ -84,25 +85,30 @@ int main()
 		list<string> artmp = f_tmp->autoread(usrinput_locs[read_all_prog_size]);
 		set_check_ check_income(artmp);
 		vector<string> ar_tmp(artmp.size());
-		
+
 		copy(artmp.begin(), artmp.end(), ar_tmp.begin());
-		
+
 		regexh* check_hrecordtmp = new regexh(ar_tmp[0]);
-		
+
 		tranfaddr* tranfaddr0tmp = new tranfaddr(ar_tmp.back());
-		
+
 		vector<rowelement> vretmp;
 		int rowcounttmp = 0;
 		for (list<string>::iterator ittmp = artmp.begin(); ittmp != artmp.end(); ittmp++) {
 			if (rowcounttmp && (!(rowcounttmp == artmp.size() - 1))) {
 				rowelement *rowelement0tmp = new rowelement(*ittmp);
-				vretmp.push_back(*rowelement0tmp);
+				if (rowelement0tmp->p1 == "T" || rowelement0tmp->p1 == "M") {
+					vretmp.push_back(*rowelement0tmp);
+				}
 			}
 			rowcounttmp++;
 		}
 		rowelement::showt(); rowelement::showm();
+		adder_read_all_prog_size += (vretmp[rowelement::rowcount_main_t - 1].startpt.d + vretmp[rowelement::rowcount_main_t - 1].mt.size() - vretmp[0].startpt.d);
+		rowelement::cleanup();
 	}
-
+	cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << adder_read_all_prog_size << "$$$$$$$$$$$$$$$$$$$$$$$4" << endl;
+	*/
 	FILEI* f_ = new FILEI();
 	list<string> ar = f_->autoread();
 	set_check_ check_income(ar);
@@ -129,6 +135,7 @@ int main()
 	/*auto it_must_be_h4 = vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d;
 	cout <<"@@@@@@@@@@@@@@@@@@@@@@@@@"<< it_must_be_h4 << "@@@@@@@@@@@@@@@@@@@@@@@@@"<< check_hrecord->h4 <<"@@@@@@@@@@@@@@@@@"<< endl;
 	randoms* randoms0 = new randoms(it_must_be_h4);*/
+	//randoms* randoms0 = new randoms(adder_read_all_prog_size);
 	randoms* randoms0 = new randoms(vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d);
 #else // VER1
 	randoms* randoms0 = new randoms(stoul("0x" + check_hrecord->h4, nullptr, 16));
