@@ -19,6 +19,8 @@
 #define VER2
 #define aisatsu Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting();
 void aisatsu_(std::string aisatsu_word) { Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting(aisatsu_word); }
+#define aisatsu91 Aisatsu* Aisatsu91 = new Aisatsu(); Aisatsu91->greeting("questions about in/out put files");
+void aisatsu_91(std::string aisatsu_word) { Aisatsu* Aisatsu91 = new Aisatsu(); Aisatsu91->greeting(aisatsu_word); }
 #define set_check_income false
 #define set_check_ if(set_check_income)
 void check_income(list<string> ar) { aisatsu_("check_income"); for (list<string>::iterator it = ar.begin(); it != ar.end(); it++) { std::cout << *it << endl; }std::cout << "\n"; }
@@ -36,8 +38,14 @@ int main()
 		> get length
 		> check length ->?-> exit
 		*/
+		aisatsu91
 
-		FILEI* f_ = new FILEI();
+		string outputfile_obj_loc;
+	cout << "Type your outputfile (obj) name: ";
+	cin >> outputfile_obj_loc; // get user input from the keyboard
+	cout << "(Information writing confirmation) Your filename is: " << outputfile_obj_loc;
+
+	FILEI* f_ = new FILEI();
 	list<string> ar = f_->autoread();
 	set_check_ check_income(ar);
 	vector<string> ar_(ar.size());
@@ -95,16 +103,16 @@ int main()
 			{
 				if ((!isfirst)
 					||
-					(isfirst&& (v_re.plen.d % 2 == 0))
+					(isfirst && (v_re.plen.d % 2 == 0))
 					) {
-			
+
 					cout << "#" << newVec_.s << "$";
 					reverse(newVec_.s.begin(), newVec_.s.end());
 					newVec_.s.resize(2, '0');
 					reverse(newVec_.s.begin(), newVec_.s.end());
 					new_Vec << newVec_.s;
 				}
-				else if (isfirst && (v_re.plen.d % 2 != 0)){
+				else if (isfirst && (v_re.plen.d % 2 != 0)) {
 					cout << "#" << newVec_.s << "$";
 					reverse(newVec_.s.begin(), newVec_.s.end());
 					newVec_.s.resize(2, '0');
@@ -132,10 +140,10 @@ int main()
 			for (int writeback = 0; writeback < ((v_re.plen.d + 1) / 2); writeback++)
 			{
 				string tmp_ap = "";
-				tmp_ap+=((isfirst && (v_re.plen.d % 2 != 0))? (*(rowelement::t_))[v_re.startpt.d + writeback].s[0]: wb_[writeback * 2]);
-				tmp_ap+=(wb_[writeback * 2 + 1]);
+				tmp_ap += ((isfirst && (v_re.plen.d % 2 != 0)) ? (*(rowelement::t_))[v_re.startpt.d + writeback].s[0] : wb_[writeback * 2]);
+				tmp_ap += (wb_[writeback * 2 + 1]);
 				/*void set(hexdr *z, string i,rt r_t,int rownum_);*/
-				cout <<"////"<< tmp_ap << "////" << endl;
+				cout << "////" << tmp_ap << "////" << endl;
 				v_re.set(&((*(rowelement::t_))[v_re.startpt.d + writeback]), tmp_ap
 					, (*(rowelement::t_))[v_re.startpt.d + writeback].r_t_, (*(rowelement::t_))[v_re.startpt.d + writeback].rownum);
 				isfirst = false;
