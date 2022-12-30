@@ -16,7 +16,7 @@
 #include <list>
 #include <sstream>
 
-#define VER2
+#define VER1
 #define aisatsu Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting();
 void aisatsu_(std::string aisatsu_word) { Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting(aisatsu_word); }
 #define aisatsu91 Aisatsu* Aisatsu91 = new Aisatsu(); Aisatsu91->greeting("questions about in/out put files (type \"EOF\" to abort)");
@@ -76,7 +76,7 @@ int main()
 		PRINTSTRINGVECTOR(usrinput_locs)
 		cout << endl;
 	aisatsu93
-		int adder_read_all_prog_size = 0;
+		//int adder_read_all_prog_size = 0;
 	/*for (size_t read_all_prog_size = 1; read_all_prog_size < usrinput_locs.size() - 1; read_all_prog_size++)
 	{
 		cout << usrinput_locs[read_all_prog_size] << endl;
