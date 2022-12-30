@@ -205,7 +205,7 @@ void rowelement::printnew() {
 	cout << endl;
 }
 
-void  rowelement::cleanup() {
+void rowelement::cleanup() {
 	rowelement::m_->clear();
 	rowelement::t_->clear();
 	rowelement::row_loc_start->clear();

@@ -154,6 +154,7 @@
     <ClInclude Include="afterBackward.h" />
     <ClInclude Include="Aisatsu.h" />
     <ClInclude Include="FILEI.h" />
+    <ClInclude Include="input_file_row_vactor_output_t_rec.h" />
     <ClInclude Include="mems.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="randoms.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="afterBackward.cpp" />
     <ClCompile Include="Aisatsu.cpp" />
     <ClCompile Include="FILEI.cpp" />
+    <ClCompile Include="input_file_row_vactor_output_t_rec.cpp" />
     <ClCompile Include="mems.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

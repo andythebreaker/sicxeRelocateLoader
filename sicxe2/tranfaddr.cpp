@@ -9,8 +9,8 @@ tranfaddr::tranfaddr()
 tranfaddr::tranfaddr(string Erecder) {
 	cout << "Erecord: " << quoted(Erecder) << '\n';
 
-	const regex re("(E)([A-Za-z0-9]{6})");
-	const regex rehw3("(E)");
+	const regex re("^(E)([A-Za-z0-9]{6})");
+	const regex rehw3("^(E)");
 
 	smatch match;
 	if (regex_match(Erecder, match, re))

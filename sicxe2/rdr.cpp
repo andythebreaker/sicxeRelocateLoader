@@ -1,13 +1,15 @@
 #include "pch.h"
 #include "rdr.h"
 
+map<string, int>* rdr::varmap = new map<string, int>();
+
 rdr::rdr()
 {/*不要呼叫這個，叫(int)的多載*/
 	cout << "[ERROR@rdr.cpp::rdr()]" << endl;
 	exit(1);
 }
 
-rdr::rdr(vector<string> xrdx)
+rdr::rdr(vector<string> xrdx,int startpt)
 {
 	const regex re("([RD])(.+)");
 	for (vector<string>::iterator it = xrdx.begin(); it != xrdx.end(); it++) {
@@ -25,11 +27,27 @@ rdr::rdr(vector<string> xrdx)
 		}
 		if (h1=="R")
 		{
-			
+			cout << "[info] i just dont want to do r data struct XD" << endl;
 		}
 		else if (h1 == "D")
 		{
+			//string str("0123456789asdf");
+			vector<string> sixsplit;
+			for (unsigned i = 0; i < h2.length(); i += 6) {
+				string tmp_sixsplit = h2.substr(i, 6);
+				sixsplit.push_back(tmp_sixsplit);
+				cout << tmp_sixsplit << endl;
+			}
+			//map<string, int> varmap;
+			for (size_t sixsplit_group_2 = 0; sixsplit_group_2 < sixsplit.size(); sixsplit_group_2++)
+			{
+				string removenamespce = sixsplit[sixsplit_group_2];
+				removenamespce.erase(remove_if(removenamespce.begin(), removenamespce.end(), isspace), removenamespce.end());
 
+				if (sixsplit_group_2 % 2 == 0) {
+					varmap->insert(pair<string, int>(removenamespce, startpt + stoul("0x" + sixsplit[sixsplit_group_2 + 1], nullptr, 16)));
+				}
+			}
 		}
 		else
 		{

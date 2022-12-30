@@ -11,13 +11,18 @@
 #include "mems.h"
 #include "tranfaddr.h"
 #include "rdr.h"
+#include "input_file_row_vactor_output_t_rec.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <list>
 #include <sstream>
+#include <algorithm>
 
 #define VER1
+#define HW3MEG
+#define I_THINK_I_AM_RIGHT
+#define VARMAPUSENEW
 #define aisatsu Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting();
 void aisatsu_(std::string aisatsu_word) { Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting(aisatsu_word); }
 #define aisatsu91 Aisatsu* Aisatsu91 = new Aisatsu(); Aisatsu91->greeting("questions about in/out put files (type \"EOF\" to abort)");
@@ -38,6 +43,26 @@ void check_income(list<string> ar) { aisatsu_("check_income"); for (list<string>
 using namespace std;
 int main()
 {
+	/*string oooOOOooo1 = "00001A";
+	int oooOOOooo2 = 4;
+	int oooOOOooo3 = stoul("0x" + oooOOOooo1, nullptr, 16) + oooOOOooo2;
+	ostringstream oooOOOooo4;
+	oooOOOooo4 << hex << oooOOOooo3;
+	string oooOOOooo5 = oooOOOooo4.str();
+	reverse(oooOOOooo5.begin(), oooOOOooo5.end());
+	oooOOOooo5.resize(oooOOOooo1.length(), '0');
+	reverse(oooOOOooo5.begin(), oooOOOooo5.end());
+	transform(oooOOOooo5.begin(), oooOOOooo5.end(), oooOOOooo5.begin(), ::toupper);
+	cout<<oooOOOooo5<<endl;
+	exit(1);*/
+	/*string str("0123456789asdf");
+	vector<string> sixsplit;
+	for (unsigned i = 0; i < str.length(); i += 4) {
+		string tmp_sixsplit = str.substr(i, 4);
+		sixsplit.push_back(tmp_sixsplit);
+		cout << tmp_sixsplit << endl;
+	}
+	exit(1);*/
 	aisatsu
 
 		/*flow:
@@ -77,7 +102,9 @@ int main()
 		PRINTSTRINGVECTOR(usrinput_locs)
 		cout << endl;
 	aisatsu93
-
+#ifndef VARMAPUSENEW
+		map<string,int> hmap;
+#endif // !VARMAPUSENEW
 		int adder_read_all_prog_size = 0;
 	vector<int> partl;
 	for (size_t read_all_prog_size = 1; read_all_prog_size < usrinput_locs.size() - 1; read_all_prog_size++)
@@ -92,12 +119,47 @@ int main()
 		copy(artmp.begin(), artmp.end(), ar_tmp.begin());
 
 		regexh* check_hrecordtmp = new regexh(ar_tmp[0]);
-		rdr* rdr0tmp = new rdr(ar_tmp);
+		if (read_all_prog_size==1) {
+			input_file_row_vactor_output_t_rec::h->push_back(check_hrecordtmp->h1);
+		input_file_row_vactor_output_t_rec::h->push_back(check_hrecordtmp->h2);
+		input_file_row_vactor_output_t_rec::h->push_back(check_hrecordtmp->h3);
+		input_file_row_vactor_output_t_rec::h->push_back(check_hrecordtmp->h4);
+		tranfaddr* tranfaddr0tmp = new tranfaddr(ar_tmp.back());
+		input_file_row_vactor_output_t_rec::e->push_back(tranfaddr0tmp->e1);
+		input_file_row_vactor_output_t_rec::e->push_back(tranfaddr0tmp->e2);
+		}
+		rdr* rdr0tmp = new rdr(ar_tmp, adder_read_all_prog_size);
+		input_file_row_vactor_output_t_rec::_(ar_tmp, adder_read_all_prog_size);
+		string removenamespce = check_hrecordtmp->h2;
+		removenamespce.erase(remove_if(removenamespce.begin(), removenamespce.end(), isspace), removenamespce.end());
+#ifdef VARMAPUSENEW
+		rdr::varmap->insert(pair<string, int>(removenamespce, adder_read_all_prog_size));
+#else
+		hmap.insert(pair<string,int>(removenamespce, adder_read_all_prog_size));
+#endif // VARMAPUSENEW
 		partl.push_back(stoul("0x" + check_hrecordtmp->h4, nullptr, 16));
 		adder_read_all_prog_size+=stoul("0x" + check_hrecordtmp->h4, nullptr, 16);
 	}
 	cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << adder_read_all_prog_size << "$$$$$$$$$$$$$$$$$$$$$$$4" << endl;
 	
+#ifdef HW3MEG
+#ifdef I_THINK_I_AM_RIGHT
+	*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file) =input_file_row_vactor_output_t_rec::get_t_s_in_all_file();
+//#else
+#endif // I_THINK_I_AM_RIGHT
+	input_file_row_vactor_output_t_rec::add_h_row_t_s_in_all_file();
+	input_file_row_vactor_output_t_rec::add_e_row_t_s_in_all_file();
+	list<string> hw3megdest((*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)).begin(), (*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)).end());
+
+	//FILEI* f_ = new FILEI();
+	list<string> ar = hw3megdest;//f_->autoread();
+	set_check_ check_income(ar);
+	vector<string> ar_(ar.size());
+	copy(ar.begin(), ar.end(), ar_.begin());
+	//cout << ar_.back();
+	regexh* check_hrecord = new regexh(ar_[0]);
+	tranfaddr* tranfaddr0 = new tranfaddr(ar_.back());
+#else
 	FILEI* f_ = new FILEI();
 	list<string> ar = f_->autoread();
 	set_check_ check_income(ar);
@@ -106,6 +168,8 @@ int main()
 	//cout << ar_.back();
 	regexh* check_hrecord = new regexh(ar_[0]);
 	tranfaddr* tranfaddr0 = new tranfaddr(ar_.back());
+#endif // DEBUG
+
 
 	vector<rowelement> vre;
 	int rowcount = 0;

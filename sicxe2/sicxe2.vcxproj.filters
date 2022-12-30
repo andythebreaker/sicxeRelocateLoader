@@ -48,6 +48,9 @@
     <ClInclude Include="rdr.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+    <ClInclude Include="input_file_row_vactor_output_t_rec.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -84,6 +87,9 @@
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="rdr.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="input_file_row_vactor_output_t_rec.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>

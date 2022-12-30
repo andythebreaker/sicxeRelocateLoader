@@ -14,7 +14,7 @@
 #define aisatsu_afterbackward Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting("after reloacted");
 #define aisatsu_showm Aisatsu* Aisatsu1 = new Aisatsu(); Aisatsu1->greeting("showm");
 #define aisatsu_showt Aisatsu* Aisatsu2 = new Aisatsu(); Aisatsu2->greeting("showt");
-#define setting_debbug true
+#define setting_debbug false
 #define debbug if(setting_debbug)
 
 using namespace std;
