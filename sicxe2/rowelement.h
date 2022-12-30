@@ -14,7 +14,7 @@
 #define aisatsu_afterbackward Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting("after reloacted");
 #define aisatsu_showm Aisatsu* Aisatsu1 = new Aisatsu(); Aisatsu1->greeting("showm");
 #define aisatsu_showt Aisatsu* Aisatsu2 = new Aisatsu(); Aisatsu2->greeting("showt");
-#define setting_debbug false
+#define setting_debbug true
 #define debbug if(setting_debbug)
 
 using namespace std;
@@ -37,6 +37,7 @@ public:
 	rt r;
 	vector<string> s;
 	rowelement(string i);
+	rowelement(string i, bool skipp);
 	string p1; string p4; string p3; string p2;
 	hexdr startpt;
 	hexdr plen;
@@ -55,5 +56,6 @@ public:
 	void set(hexdr *z, string i,rt r_t,int rownum_);
 private:
 	static vector<hexdr>* row_loc_start;
+	static bool rowelementswitch;
 };
 

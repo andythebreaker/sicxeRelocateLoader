@@ -31,6 +31,24 @@ list<string> FILEI::autoread() {
 	MyReadFile.close();
 	return myList;
 }
+list<string> FILEI::autoread(string inputfilenamefromusr) {
+	// Create a text string, which is used to output the text file
+	string myText;
+	list<string> myList = {};
+	// Read from the text file
+	ifstream MyReadFile(inputfilenamefromusr);
+
+	// Use a while loop together with the getline() function to read the file line by line
+	while (getline(MyReadFile, myText)) {
+		// Output the text from the file
+		dbg cout << myText;
+		myList.push_back(myText);
+	}
+
+	// Close the file
+	MyReadFile.close();
+	return myList;
+}
 
 FILEI::~FILEI()
 {

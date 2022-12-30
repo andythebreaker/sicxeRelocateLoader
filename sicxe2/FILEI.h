@@ -12,5 +12,6 @@ public:
 	FILEI();
 	~FILEI();
 	list<string> autoread();
+	list<string> autoread(string inputfilenamefromusr);
 };
 

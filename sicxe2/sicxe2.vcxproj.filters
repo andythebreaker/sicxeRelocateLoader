@@ -85,5 +85,8 @@
     <Text Include="ina.txt" />
     <Text Include="inb.txt" />
     <Text Include="worknote.txt" />
+    <Text Include="hw3inputmain.txt" />
+    <Text Include="hw3inputsub1.txt" />
+    <Text Include="hw3inputsub2.txt" />
   </ItemGroup>
 </Project>

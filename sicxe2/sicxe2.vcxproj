@@ -181,6 +181,9 @@
     <ClCompile Include="tranfaddr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="hw3inputmain.txt" />
+    <Text Include="hw3inputsub1.txt" />
+    <Text Include="hw3inputsub2.txt" />
     <Text Include="ina.txt" />
     <Text Include="inb.txt" />
     <Text Include="worknote.txt" />
