@@ -10,6 +10,7 @@
 #include "rowelement.h"
 #include "mems.h"
 #include "tranfaddr.h"
+#include "rdr.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -78,6 +79,7 @@ int main()
 	aisatsu93
 
 		int adder_read_all_prog_size = 0;
+	vector<int> partl;
 	for (size_t read_all_prog_size = 1; read_all_prog_size < usrinput_locs.size() - 1; read_all_prog_size++)
 	{
 		cout << usrinput_locs[read_all_prog_size] << endl;
@@ -90,6 +92,8 @@ int main()
 		copy(artmp.begin(), artmp.end(), ar_tmp.begin());
 
 		regexh* check_hrecordtmp = new regexh(ar_tmp[0]);
+		rdr* rdr0tmp = new rdr(ar_tmp);
+		partl.push_back(stoul("0x" + check_hrecordtmp->h4, nullptr, 16));
 		adder_read_all_prog_size+=stoul("0x" + check_hrecordtmp->h4, nullptr, 16);
 	}
 	cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << adder_read_all_prog_size << "$$$$$$$$$$$$$$$$$$$$$$$4" << endl;
@@ -123,7 +127,8 @@ int main()
 	//randoms* randoms0 = new randoms(adder_read_all_prog_size);
 	randoms* randoms0 = new randoms(vre[rowelement::rowcount_main_t - 1].startpt.d + vre[rowelement::rowcount_main_t - 1].mt.size() - vre[0].startpt.d);
 #else // VER1
-	randoms* randoms0 = new randoms(stoul("0x" + check_hrecord->h4, nullptr, 16));
+	//randoms* randoms0 = new randoms(stoul("0x" + check_hrecord->h4, nullptr, 16));
+	randoms* randoms0 = new randoms(adder_read_all_prog_size);
 #endif // VER
 	ostringstream ss;
 	ss << hex << randoms0->load_addr;

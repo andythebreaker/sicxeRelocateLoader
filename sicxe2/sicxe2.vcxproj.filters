@@ -45,6 +45,9 @@
     <ClInclude Include="tranfaddr.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+    <ClInclude Include="rdr.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -78,6 +81,9 @@
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="tranfaddr.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="rdr.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>

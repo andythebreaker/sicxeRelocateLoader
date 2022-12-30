@@ -157,6 +157,7 @@
     <ClInclude Include="mems.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="randoms.h" />
+    <ClInclude Include="rdr.h" />
     <ClInclude Include="regexh.h" />
     <ClInclude Include="rowelement.h" />
     <ClInclude Include="SekaiTekiNi.h" />
@@ -174,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="randoms.cpp" />
+    <ClCompile Include="rdr.cpp" />
     <ClCompile Include="regexh.cpp" />
     <ClCompile Include="rowelement.cpp" />
     <ClCompile Include="SekaiTekiNi.cpp" />
