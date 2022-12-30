@@ -9,6 +9,7 @@
 #include <sstream>
 #include <regex>
 #include <iomanip>
+#include "rdr.h"
 
 #define setting_debbug true
 #define debbug if(setting_debbug)
@@ -30,6 +31,7 @@ public:
 	static int total_char_count_in_file_t_rec;
 	static vector < vector < vector <string>>>* files_m_stack_per_itmes_loc_mod_fy_ed;
 	static vector<string> m_bar_eat_t_bar();
+	static vector<string> m_bar_eat_t_bar(int mainloadaddr);
 private:
 	static vector<vector<vector<string>>>* t_s_in_all_file;
 };

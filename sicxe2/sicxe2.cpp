@@ -23,6 +23,7 @@
 #define HW3MEG
 #define I_THINK_I_AM_RIGHT
 #define VARMAPUSENEW
+#define WRONGMRECADD
 #define aisatsu Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting();
 void aisatsu_(std::string aisatsu_word) { Aisatsu* Aisatsu0 = new Aisatsu(); Aisatsu0->greeting(aisatsu_word); }
 #define aisatsu91 Aisatsu* Aisatsu91 = new Aisatsu(); Aisatsu91->greeting("questions about in/out put files (type \"EOF\" to abort)");
@@ -148,8 +149,17 @@ int main()
 //#else
 #endif // I_THINK_I_AM_RIGHT
 	input_file_row_vactor_output_t_rec::add_h_row_t_s_in_all_file();
+#ifndef	WRONGMRECADD
+	vector<string> m_bar_eat_t_bar_result = input_file_row_vactor_output_t_rec::m_bar_eat_t_bar();
+	vector<string> recAB;
+	recAB.reserve((*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)).size() + m_bar_eat_t_bar_result.size()); // preallocate memory
+	recAB.insert(recAB.end(), (*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)).begin(), (*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)).end());
+	recAB.insert(recAB.end(), m_bar_eat_t_bar_result.begin(), m_bar_eat_t_bar_result.end());
+	(*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)) = recAB;
+#endif//WRONGMRECADD
 	input_file_row_vactor_output_t_rec::add_e_row_t_s_in_all_file();
 	list<string> hw3megdest((*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)).begin(), (*(input_file_row_vactor_output_t_rec::row_t_s_in_all_file)).end());
+	//list<string> hw3megdest(recAB.begin(), recAB.end());
 
 	//FILEI* f_ = new FILEI();
 	list<string> ar = hw3megdest;//f_->autoread();
@@ -202,7 +212,9 @@ int main()
 	SekaiTekiNi0->print();
 
 	/*對VRE做起始元加加
+	痾......這一整段不要理他，完全沒作用
 	*/
+//#ifdef WRONGMRECADD
 	for (auto &v_re : vre)
 	{
 		if (v_re.r == t) {
@@ -251,7 +263,9 @@ int main()
 			cout << new_Vec.str();
 			cout << "%" << endl;
 			int thing2add = stoul("0x" + new_Vec.str(), nullptr, 16);
-			thing2add += SekaiTekiNi0->porgstart.d;
+			string tmp_substr_from_the_1_to_the_last_character_c = v_re.p4.substr(1);
+			thing2add += stoul("0x" + tmp_substr_from_the_1_to_the_last_character_c, 
+				nullptr, 16)*((v_re.p4)[0]=='+'?1:-1); //SekaiTekiNi0->porgstart.d;
 
 			ostringstream wb;
 			wb << hex << thing2add;
@@ -277,6 +291,7 @@ int main()
 			exit(1);
 		}
 	}
+//#endif // WRONGMRECADD
 
 	rowelement::backward(&vre);
 	vector<int> fmax;

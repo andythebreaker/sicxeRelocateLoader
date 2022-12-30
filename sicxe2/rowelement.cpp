@@ -59,17 +59,19 @@ rowelement::rowelement(string i)
 			cout << "[error] record len NEQ!" << endl;
 			exit(1);
 		}
-		string::iterator lc = p4.begin();
-		for (size_t j = 1; j <= p4.length() / 2; j++)
-		{
-			string::iterator  aa = (j + 1 > p4.length() / 2) ? (p4.end()) : (p4.begin() + 2 * j);
-			string bb(lc, aa);
-			lc = aa;
-			hexdr tmp;
-			set(&tmp, bb, r, (r == t) ? rowcount_main_t : rowcount_main_m);
-			mt.push_back(tmp);
-			if (r == m)(*m_).push_back(tmp);
-			if (r == t)(*t_).push_back(tmp);
+		if (r == t) {
+			string::iterator lc = p4.begin();
+			for (size_t j = 1; j <= p4.length() / 2; j++)
+			{
+				string::iterator  aa = (j + 1 > p4.length() / 2) ? (p4.end()) : (p4.begin() + 2 * j);
+				string bb(lc, aa);
+				lc = aa;
+				hexdr tmp;
+				set(&tmp, bb, r, (r == t) ? rowcount_main_t : rowcount_main_m);
+				mt.push_back(tmp);
+				if (r == m)(*m_).push_back(tmp);
+				if (r == t)(*t_).push_back(tmp);
+			}
 		}
 		if (r == t)end_index = t_->size();
 		//}

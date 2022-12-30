@@ -63,7 +63,7 @@ void input_file_row_vactor_output_t_rec::_(vector<string> vector_string, int add
 			string local_tmp_regex_group_3 = match2[3].str();
 			string local_tmp_regex_group_4 = match2[4].str();
 			string local_tmp_regex_group_5 = match2[5].str();
-			HEX_PLUS_INT_EQ_HEX_6(local_tmp_regex_group_2, chace_total_char_count_in_file_t_rec)
+			HEX_PLUS_INT_EQ_HEX_6(local_tmp_regex_group_2, addr_margen)//chace_total_char_count_in_file_t_rec)
 				sub_m_s_in_single_file.push_back(local_tmp_regex_group_1);
 			sub_m_s_in_single_file.push_back(local_tmp_regex_group_2);
 			sub_m_s_in_single_file.push_back(local_tmp_regex_group_3);
@@ -119,9 +119,33 @@ vector<string> input_file_row_vactor_output_t_rec::m_bar_eat_t_bar() {
 	vector<string> forreturn;
 	for (auto &vector_string_pointer : *(input_file_row_vactor_output_t_rec::files_m_stack_per_itmes_loc_mod_fy_ed)) {
 		for (auto &vector_string_pointer1 : vector_string_pointer) {
-			string perrecord = vector_string_pointer1[0]+ vector_string_pointer1[1] + vector_string_pointer1[2];
+			ostringstream wb;
+			wb << hex << (*(rdr::varmap))[vector_string_pointer1[4]];
+			string wb_ = wb.str();
+			string perrecord = vector_string_pointer1[0]+ 
+				vector_string_pointer1[1] + 
+				vector_string_pointer1[2] + 
+				vector_string_pointer1[3]+
+				wb_;
+			forreturn.push_back(perrecord);
+		}
+	}
+	return forreturn;
+}
 
-
+vector<string> input_file_row_vactor_output_t_rec::m_bar_eat_t_bar(int mainloadaddr) {
+	vector<string> forreturn;
+	for (auto &vector_string_pointer : *(input_file_row_vactor_output_t_rec::files_m_stack_per_itmes_loc_mod_fy_ed)) {
+		for (auto &vector_string_pointer1 : vector_string_pointer) {
+			ostringstream wb;
+			wb << hex << ((*(rdr::varmap))[vector_string_pointer1[4]]+ mainloadaddr);
+			string wb_ = wb.str();
+			string perrecord = vector_string_pointer1[0] +
+				vector_string_pointer1[1] +
+				vector_string_pointer1[2] +
+				vector_string_pointer1[3] +
+				wb_;
+			forreturn.push_back(perrecord);
 		}
 	}
 	return forreturn;
