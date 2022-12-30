@@ -76,8 +76,9 @@ int main()
 		PRINTSTRINGVECTOR(usrinput_locs)
 		cout << endl;
 	aisatsu93
-		//int adder_read_all_prog_size = 0;
-	/*for (size_t read_all_prog_size = 1; read_all_prog_size < usrinput_locs.size() - 1; read_all_prog_size++)
+
+		int adder_read_all_prog_size = 0;
+	for (size_t read_all_prog_size = 1; read_all_prog_size < usrinput_locs.size() - 1; read_all_prog_size++)
 	{
 		cout << usrinput_locs[read_all_prog_size] << endl;
 
@@ -89,26 +90,10 @@ int main()
 		copy(artmp.begin(), artmp.end(), ar_tmp.begin());
 
 		regexh* check_hrecordtmp = new regexh(ar_tmp[0]);
-
-		tranfaddr* tranfaddr0tmp = new tranfaddr(ar_tmp.back());
-
-		vector<rowelement> vretmp;
-		int rowcounttmp = 0;
-		for (list<string>::iterator ittmp = artmp.begin(); ittmp != artmp.end(); ittmp++) {
-			if (rowcounttmp && (!(rowcounttmp == artmp.size() - 1))) {
-				rowelement *rowelement0tmp = new rowelement(*ittmp);
-				if (rowelement0tmp->p1 == "T" || rowelement0tmp->p1 == "M") {
-					vretmp.push_back(*rowelement0tmp);
-				}
-			}
-			rowcounttmp++;
-		}
-		rowelement::showt(); rowelement::showm();
-		adder_read_all_prog_size += (vretmp[rowelement::rowcount_main_t - 1].startpt.d + vretmp[rowelement::rowcount_main_t - 1].mt.size() - vretmp[0].startpt.d);
-		rowelement::cleanup();
+		adder_read_all_prog_size+=stoul("0x" + check_hrecordtmp->h4, nullptr, 16);
 	}
 	cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << adder_read_all_prog_size << "$$$$$$$$$$$$$$$$$$$$$$$4" << endl;
-	*/
+	
 	FILEI* f_ = new FILEI();
 	list<string> ar = f_->autoread();
 	set_check_ check_income(ar);
